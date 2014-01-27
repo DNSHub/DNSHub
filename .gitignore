@@ -80,3 +80,6 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+
+# ignore rbenv settings
+.ruby-version
