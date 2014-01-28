@@ -19,7 +19,7 @@ describe Domain do
   end
 end
 
-describe Domains, '#type' do
+describe Domain, '#type' do
   subject(:domain) { build(:domain) }
 
   it "can't be empty" do
@@ -48,7 +48,7 @@ describe Domains, '#type' do
   end
 end
 
-describe Domains, '#master' do
+describe Domain, '#master' do
   subject(:slave_domain) { build(:slave_domain) }
 
   context "when type is SLAVE" do
