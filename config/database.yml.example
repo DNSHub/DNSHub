@@ -23,3 +23,24 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+
+pdns_development:
+  migrate: true
+  adapter: sqlite3
+  database: db/pdns_development.sqlite3
+  pool: 5
+  timeout: 5000
+
+pdns_test:
+  migrate: true
+  adapter: sqlite3
+  database: db/pdns_test.sqlite3
+  pool: 5
+  timeout: 5000
+
+pdns_production:
+  migrate: false
+  adapter: sqlite3
+  database: db/pdns_production.sqlite3
+  pool: 5
+  timeout: 5000
