@@ -25,7 +25,7 @@ group :development do
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 4.0"
   gem 'rspec-rails'
 end
 group :production do
