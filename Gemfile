@@ -25,7 +25,10 @@ group :development do
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
+<<<<<<< HEAD
   gem 'coveralls', require: false
+=======
+>>>>>>> fix some factory_girl issues
   gem 'factory_girl_rails', "~> 4.0"
   gem 'rspec-rails'
 end
