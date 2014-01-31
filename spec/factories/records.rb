@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :record, :class => 'Records' do
+  factory :record do
     domain ""
     name "MyString"
     type ""

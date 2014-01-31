@@ -20,7 +20,7 @@
 #     * **`name`**
 #
 
-class Domains < ActiveRecord::Base
+class Domain < ActiveRecord::Base
   include PDNS
   include DomainNameValidation
 

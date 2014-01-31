@@ -26,7 +26,7 @@
 #     * **`type`**
 #
 
-class Records < ActiveRecord::Base
+class Record < ActiveRecord::Base
   include PDNS
   include DomainNameValidation
 

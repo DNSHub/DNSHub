@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :domain, :class => 'Domains' do
+  factory :domain do
     name "MyString"
     master "MyString"
     last_check 1
