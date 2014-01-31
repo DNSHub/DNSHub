@@ -12,6 +12,7 @@ gem 'bootstrap-sass', '>= 3.0.0.0'
 gem 'devise'
 gem 'figaro'
 group :development do
+  gem 'annotate', ">=2.6.0"
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
