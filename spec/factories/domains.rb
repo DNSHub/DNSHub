@@ -4,9 +4,6 @@ FactoryGirl.define do
   factory :domain do
     id { generate(:random_id) }
     name { "example#{id}.com" }
-    last_check 1
-    notified_serial 1
-    account ""
 
     trait :native do
      type "NATIVE"
