@@ -25,4 +25,17 @@ class Domain < ActiveRecord::Base
   include DomainNameValidation
 
   has_many :records
+
+  validates :name,
+    presence: true,
+    format: { with: /\A[\w\-\.]*[+\w]\z/ }
+
+  validates :type,
+    presence: true,
+    inclusion: { in: ["NATIVE", "MASTER", "SLAVE"] }
+
+  validates :master,
+    presence: true,
+    format: { with: /\A([0-9]+\.){3}[0-9]+\z/, message: "must an ip" }, # TODO: translate
+    if: ->(domain) { domain.type == "SLAVE" }
 end
