@@ -3,7 +3,7 @@ class CreateRecords < ActiveRecord::Migration
     config = Rails.configuration.database_configuration
 
     if config["pdns_#{Rails.env}"]["migrate"]
-      Domains.connection.create_table :records do |t|
+      Domain.connection.create_table :records do |t|
         t.references :domain
         t.string :name, limit: 255
         t.string :type, imit: 10
