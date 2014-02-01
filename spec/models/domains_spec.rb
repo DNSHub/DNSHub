@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Domain do
+describe Domain, '#name' do
   subject(:domain) { build(:native_domain) }
 
   it "can't be empty" do

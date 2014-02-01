@@ -29,6 +29,14 @@
 class Record < ActiveRecord::Base
   include PDNS
   include DomainNameValidation
+  include RecordTypeValidation
 
   belongs_to :domain
+
+  validates :content,
+    presence:true
+
+  def record_type?(type)
+    self.type == type.to_s.upcase
+  end
 end
