@@ -1,34 +1,5 @@
 require 'spec_helper'
 
-describe Record, '#record_type?' do
-  subject(:record) { build(:a_record, :master_domain) }
-
-  it "has a valid factory" do
-    expect(record).to be_valid
-  end
-
-  it { expect(record).to be_record_type(:a) }
-  it { expect(record).not_to be_record_type(:cname) }
-end
-
-describe Record, '#name' do
-  subject(:record) { build(:a_record, :master_domain) }
-
-  it "has a valid factory" do
-    expect(record).to be_valid
-  end
-
-  it "accept domains" do
-    record.name = "www.example.com"
-    expect(record).to be_valid
-  end
-
-  it "denied domains with terminated dot" do
-    record.name = "www.example.com."
-    expect(record).not_to be_valid
-  end
-end
-
 describe Record, '#content' do
   context "A record" do
     subject(:record) { build(:a_record, :master_domain) }
@@ -102,5 +73,52 @@ describe Record, '#content' do
       record.content = "example.com admin@example.com 1 2 3 four 5"
       expect(record).not_to be_valid
     end
+
+    it "denied not well formed" do
+      record.content = "example.com admin@example.com 1 2 3 5"
+      expect(record).not_to be_valid
+    end
+  end
+end
+
+describe Record, '#name' do
+  subject(:record) { build(:a_record, :master_domain) }
+
+  it "has a valid factory" do
+    expect(record).to be_valid
+  end
+
+  it "accept domains" do
+    record.name = "www.example.com"
+    expect(record).to be_valid
+  end
+
+  it "denied domains with terminated dot" do
+    record.name = "www.example.com."
+    expect(record).not_to be_valid
+  end
+end
+
+describe Record, '#record_type?' do
+  subject(:record) { build(:a_record, :master_domain) }
+
+  it "has a valid factory" do
+    expect(record).to be_valid
+  end
+
+  it { expect(record).to be_record_type(:a) }
+  it { expect(record).not_to be_record_type(:cname) }
+end
+
+describe Record, '#type' do
+  subject(:record) { build(:a_record, :master_domain) }
+
+  it "has a valid factory" do
+    expect(record).to be_valid
+  end
+
+  it "denied unknown types" do
+    record.type = "XXX"
+    expect(record).not_to be_valid
   end
 end
