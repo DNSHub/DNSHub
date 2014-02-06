@@ -2,14 +2,16 @@ module SoaRecord
   extend ActiveSupport::Concern
 
   included do
-    validate :validate_soa_content, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_primary, domain: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_email, email: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_serial, uint: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_refresh, uint: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_retry, uint: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_expiry, uint: true, if: ->(record) { record.record_type?(:SOA) }
-    validates :soa_content_nx, uint: true, if: ->(record) { record.record_type?(:SOA) }
+    with_options if: ->(record) { record.record_type?(:SOA) } do |o|
+      o.validate :validate_soa_content
+      o.validates :soa_content_primary, domain: true
+      o.validates :soa_content_email, email: true
+      o.validates :soa_content_serial, uint: true
+      o.validates :soa_content_refresh, uint: true
+      o.validates :soa_content_retry, uint: true
+      o.validates :soa_content_expiry, uint: true
+      o.validates :soa_content_nx, uint: true
+    end
 
     def soa_content_primary
       soa_content[0] if record_type? :SOA
