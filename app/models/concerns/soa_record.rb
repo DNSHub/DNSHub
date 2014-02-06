@@ -1,6 +1,8 @@
 module SoaRecord
   extend ActiveSupport::Concern
 
+  SOA_CONTEN_LENGTH = 7
+
   included do
     with_options if: ->(record) { record.record_type?(:SOA) } do |o|
       o.validate :validate_soa_content
@@ -14,37 +16,38 @@ module SoaRecord
     end
 
     def soa_content_primary
-      soa_content[0] if record_type? :SOA
+      soa_content[0]
     end
 
     def soa_content_email
-      soa_content[1]  if record_type? :SOA
+      soa_content[1]
     end
 
     def soa_content_serial
-      soa_content[2]  if record_type? :SOA
+      soa_content[2]
     end
 
     def soa_content_refresh
-      soa_content[3]  if record_type? :SOA
+      soa_content[3]
     end
 
     def soa_content_retry
-      soa_content[4]  if record_type? :SOA
+      soa_content[4]
     end
 
     def soa_content_expiry
-      soa_content[5]  if record_type? :SOA
+      soa_content[5]
     end
 
     def soa_content_nx
-      soa_content[6]  if record_type? :SOA
+      soa_content[6]
     end
   end
 
   def soa_content
-    return content.split(" ") unless content.nil?
-    []
+    result = Array.new(SOA_CONTEN_LENGTH)
+    content.split(" ").each_with_index { |elem, i| result[i] = elem } unless content.nil?
+    result
   end
 
   def validate_soa_content
