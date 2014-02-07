@@ -22,13 +22,12 @@
 
 class Domain < ActiveRecord::Base
   include PDNS
-  include DomainNameValidation
 
   has_many :records
 
   validates :name,
     presence: true,
-    format: { with: /\A[\w\-\.]*[+\w]\z/ }
+    domain: true
 
   validates :type,
     presence: true,

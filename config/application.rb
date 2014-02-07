@@ -8,7 +8,6 @@ Bundler.require(:default, Rails.env)
 
 module DNSHub
   class Application < Rails::Application
-    config.autoload_paths << Rails.root.join("app/models/helpers")
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|

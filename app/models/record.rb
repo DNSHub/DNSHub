@@ -28,13 +28,23 @@
 
 class Record < ActiveRecord::Base
   include PDNS
-  include DomainNameValidation
-  include RecordTypeValidation
+
+  include ARecord
+  include CnameRecord
+  include SoaRecord
 
   belongs_to :domain
 
+
   validates :content,
     presence:true
+
+  validates :name,
+    domain: true
+
+  validates :type,
+    presence:true,
+    inclusion: { in: ["A", "CNAME", "SOA"] }
 
   def record_type?(type)
     self.type == type.to_s.upcase
